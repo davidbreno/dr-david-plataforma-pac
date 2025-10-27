@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-type Params = { params: { id: string } };
+type Params = { params: Promise<{ id: string }> };
 
 export async function PATCH(request: Request, { params }: Params) {
+  const _params = await params;
+
   const body = await request.json();
   const { name, quantity, color, notes } = body ?? {};
   const updated = await prisma.restorativeItem.update({
-    where: { id: params.id },
+    where: { id: _params.id },
     data: {
       ...(name != null ? { name: String(name) } : {}),
       ...(quantity != null ? { quantity: Number(quantity) } : {}),
@@ -19,6 +21,8 @@ export async function PATCH(request: Request, { params }: Params) {
 }
 
 export async function DELETE(_req: Request, { params }: Params) {
-  await prisma.restorativeItem.delete({ where: { id: params.id } });
+  const _params = await params;
+
+  await prisma.restorativeItem.delete({ where: { id: _params.id } });
   return NextResponse.json({ ok: true });
 }

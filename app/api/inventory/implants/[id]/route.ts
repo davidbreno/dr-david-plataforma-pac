@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export async function PATCH(request: NextRequest, context: { params: { id: string } }) {
-  const { id } = context.params;
+export async function PATCH(request: NextRequest, context: { params: Promise<{ id: string }> }) {
+  const _params = await context.params;
+
+  const { id } = _params;
   const body = await request.json();
   const { type, lengthMm, diameterMm, quantity, brand, imageUrl } = body ?? {};
 
@@ -21,8 +23,10 @@ export async function PATCH(request: NextRequest, context: { params: { id: strin
   return NextResponse.json(updated);
 }
 
-export async function DELETE(request: NextRequest, context: { params: { id: string } }) {
-  const { id } = context.params;
+export async function DELETE(request: NextRequest, context: { params: Promise<{ id: string }> }) {
+  const _params = await context.params;
+
+  const { id } = _params;
 
   await prisma.implantItem.delete({ where: { id } });
   return NextResponse.json({ ok: true });
