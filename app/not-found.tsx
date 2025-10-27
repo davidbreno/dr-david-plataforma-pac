@@ -1,0 +1,1 @@
+export default function NotFound(){return (<div style={{padding:'40px',textAlign:'center'}}><h1 style={{fontSize:24}}>Página não encontrada</h1><p style={{opacity:.7}}>Voltar para <a href='/' style={{textDecoration:'underline'}}>início</a>.</p></div>);}

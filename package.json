@@ -1,0 +1,83 @@
+{
+  "name": "odonto-manager",
+  "version": "0.1.0",
+  "private": true,
+<<<<<<< HEAD
+  "packageManager": "pnpm@10.0.0",
+  "engines": {
+    "node": ">=20.17 <21"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp"
+    ]
+  },
+  "scripts": {
+    "dev": "cross-env NEXT_DISABLE_TURBO=1 NEXT_DISABLE_SWC_BINARY=1 next dev",
+=======
+  "scripts": {
+    "dev": "next dev",
+>>>>>>> 9d14a8e (chore: inicializa repo, configura prisma seed e dependencias)
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+<<<<<<< HEAD
+    "db:reset": "prisma migrate reset --force",
+=======
+>>>>>>> 9d14a8e (chore: inicializa repo, configura prisma seed e dependencias)
+    "db:studio": "prisma studio",
+    "seed": "tsx prisma/seed.ts",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+<<<<<<< HEAD
+    "@next-auth/prisma-adapter": "^1.0.7",
+=======
+    "@auth/prisma-adapter": "^2.0.0",
+>>>>>>> 9d14a8e (chore: inicializa repo, configura prisma seed e dependencias)
+    "@prisma/client": "^6.0.1",
+    "@radix-ui/react-slot": "^1.0.5",
+    "@tanstack/react-query": "^5.62.7",
+    "@tanstack/react-query-devtools": "^5.62.7",
+    "@vercel/blob": "^0.23.1",
+    "argon2": "^0.41.1",
+<<<<<<< HEAD
+=======
+    "bcrypt": "^6.0.0",
+>>>>>>> 9d14a8e (chore: inicializa repo, configura prisma seed e dependencias)
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.460.0",
+    "next": "15.1.6",
+<<<<<<< HEAD
+    "next-auth": "^4.24.7",
+=======
+    "next-auth": "^5.0.0-beta.26",
+>>>>>>> 9d14a8e (chore: inicializa repo, configura prisma seed e dependencias)
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "recharts": "^2.13.5",
+    "tailwind-merge": "^2.5.3",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+<<<<<<< HEAD
+    "cross-env": "^7.0.3",
+=======
+>>>>>>> 9d14a8e (chore: inicializa repo, configura prisma seed e dependencias)
+    "eslint": "^9",
+    "eslint-config-next": "16.0.0",
+    "prisma": "^6.0.1",
+    "tailwindcss": "^4",
+    "tsx": "^4.19.1",
+    "typescript": "^5"
+  }
+}
