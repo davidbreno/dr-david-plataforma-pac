@@ -1,5 +1,4 @@
-// prisma/create_user.ts
-// Por quê: evitar addon nativo; 'bcryptjs' é puro JS e compila no Vercel.
+// prisma/create_user.ts  (substitua o arquivo)
 import bcrypt from "bcryptjs";
 import { prisma } from "../src/lib/prisma";
 
@@ -11,8 +10,8 @@ async function main(): Promise<void> {
     data: {
       name: "Novo Usuário",
       email: "novo@exemplo.com",
-      hashedPassword: senhaHash,
-    },
+      hashedPassword: senhaHash
+    }
   });
 
   console.log("Usuário criado com senha 313722");
