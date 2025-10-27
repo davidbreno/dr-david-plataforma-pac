@@ -16,8 +16,8 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   experimental: {
-    serverActions: { bodySizeLimit: "5mb" }
-    // Não ativa turbo/turbopack
+    serverActions: { bodySizeLimit: "5mb" },
+    turbo: false // força Webpack no build
   },
 };
 
