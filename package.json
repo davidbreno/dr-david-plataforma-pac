@@ -13,6 +13,10 @@
   },
   "scripts": {
     "dev": "cross-env NEXT_DISABLE_TURBO=1 NEXT_DISABLE_SWC_BINARY=1 next dev",
+=======
+  "scripts": {
+    "dev": "next dev",
+>>>>>>> 9d14a8e (chore: inicializa repo, configura prisma seed e dependencias)
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -20,6 +24,8 @@
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:reset": "prisma migrate reset --force",
+=======
+>>>>>>> 9d14a8e (chore: inicializa repo, configura prisma seed e dependencias)
     "db:studio": "prisma studio",
     "seed": "tsx prisma/seed.ts",
     "postinstall": "prisma generate"
