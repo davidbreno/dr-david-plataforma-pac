@@ -1,23 +1,28 @@
-import bcrypt from 'bcrypt';
+// prisma/create_user.ts
+// Por quê: evitar addon nativo; 'bcryptjs' é puro JS e compila no Vercel.
+import bcrypt from "bcryptjs";
+import { prisma } from "../src/lib/prisma";
 
-import { prisma } from '../src/lib/prisma'; // ajuste o caminho se necessário
-
-async function main() {
-  const senha = '313722';
+async function main(): Promise<void> {
+  const senha = "313722";
   const senhaHash = await bcrypt.hash(senha, 10);
 
   await prisma.user.create({
     data: {
-      name: 'Novo Usuário',
-      email: 'novo@exemplo.com',
+      name: "Novo Usuário",
+      email: "novo@exemplo.com",
       hashedPassword: senhaHash,
-      // adicione outros campos obrigatórios do seu schema
-    }
+    },
   });
 
-  console.log('Usuário criado com senha 313722');
+  console.log("Usuário criado com senha 313722");
 }
 
 main()
-  .catch(e => console.error(e))
-  .finally(() => prisma.$disconnect());
+  .catch((e) => {
+    console.error(e);
+    process.exitCode = 1;
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
