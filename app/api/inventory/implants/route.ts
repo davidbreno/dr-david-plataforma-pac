@@ -1,12 +1,14 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export async function GET() {
-  const items = await prisma.implantItem.findMany({ orderBy: { createdAt: "desc" } });
+export async function GET(_request: NextRequest) {
+  const items = await prisma.implantItem.findMany({
+    orderBy: { createdAt: "desc" },
+  });
   return NextResponse.json(items);
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const body = await request.json();
   const { type, lengthMm, diameterMm, quantity, brand, imageUrl } = body ?? {};
 
