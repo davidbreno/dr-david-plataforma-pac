@@ -1,4 +1,3 @@
-// prisma/create_user.ts  (substitua o arquivo)
 import bcrypt from "bcryptjs";
 import { prisma } from "../src/lib/prisma";
 
