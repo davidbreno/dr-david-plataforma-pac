@@ -125,7 +125,7 @@ export function Sidebar({ clinicName = "Dr. David Breno" }: SidebarProps) {
                       </span>
                       <span className="flex-1">{item.label}</span>
                       {highlightedItems.has(item.href) ? (
-                        <span className="inline-flex h-2 w-2 rounded-full bg-[#9b5bff]" />
+                        <span className="inline-flex h-2 w-2 rounded-full bg-primary" />
                       ) : null}
                     </Link>
                   );
@@ -171,19 +171,6 @@ export function Sidebar({ clinicName = "Dr. David Breno" }: SidebarProps) {
               </Link>
             );
           })}
-        </div>
-
-        <div className="rounded-2xl border border-gray-200 bg-gray-50 px-4 py-4 text-xs text-gray-500">
-          <p className="text-sm font-semibold text-gray-900">Plano Premium</p>
-          <p className="mt-1 leading-relaxed">
-            Relatorios ilimitados, dashboards personalizados e suporte prioritario.
-          </p>
-          <button
-            type="button"
-            className="mt-3 inline-flex items-center gap-1 text-[11px] font-semibold text-primary transition hover:text-primary/80"
-          >
-            Saiba mais
-          </button>
         </div>
       </footer>
     </aside>

@@ -165,7 +165,7 @@ export default function RestorativeInventoryPage() {
             items.map((item) => (
               <div
                 key={item.id}
-                className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-[#1f1f1f] p-4 shadow-inner shadow-black/30"
+                className="flex flex-col gap-3 rounded-2xl border border-[var(--border)] bg-surface p-4 shadow-inner"
               >
                 <div className="flex flex-col gap-1">
                   <span className="text-sm font-semibold text-white">{item.nome}</span>

@@ -5,7 +5,7 @@ export function Card({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
   return (
     <div
       className={cn(
-        "rounded-3xl border border-white/10 bg-surface p-6 shadow-[0_18px_36px_rgba(23,33,41,0.25)] transition-colors hover:border-white/15 hover:bg-surface-muted",
+        "rounded-3xl border border-[var(--border)] bg-surface p-6 shadow-[0_18px_36px_rgba(76,21,48,0.22)] transition-colors hover:border-[rgba(196,131,160,0.45)] hover:bg-surface-muted",
         className,
       )}
       {...props}
@@ -24,3 +24,7 @@ export function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHead
 export function CardDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
   return <p className={cn("text-sm text-[var(--muted)]", className)} {...props} />;
 }
+
+
+
+

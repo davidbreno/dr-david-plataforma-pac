@@ -158,7 +158,10 @@ export default function ImplantInventoryPage() {
         <CardHeader className="pb-0">
           <CardTitle className="text-sm uppercase tracking-[0.3em] text-white/70">Estoque de implante</CardTitle>
         </CardHeader>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-[#151515] px-5 pb-5 pt-4 shadow-[0_12px_40px_rgba(0,0,0,0.45)]">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-3 rounded-2xl border border-[var(--border)] bg-surface px-5 pb-5 pt-4 shadow-lg"
+        >
           <div className="space-y-2">
             <label className="text-sm font-medium text-white/70">Tipo</label>
             <Select
@@ -238,14 +241,14 @@ export default function ImplantInventoryPage() {
         ) : null}
         <div className="grid gap-3 sm:grid-cols-2">
           {items.length === 0 ? (
-            <p className="rounded-2xl border border-white/10 bg-[#151515] px-5 py-3 text-sm text-white/50">
+            <p className="rounded-2xl border border-[var(--border)] bg-surface px-5 py-3 text-sm text-[color:rgb(var(--foreground-rgb)/0.6)]">
               Nenhum implante registrado ainda. Adicione seu primeiro item ao lado.
             </p>
           ) : (
             items.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center gap-3 rounded-2xl border border-white/8 bg-[#181818] px-3 py-2 shadow-[0_8px_20px_rgba(0,0,0,0.35)]"
+                className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-surface-muted px-3 py-2 shadow-md"
               >
                 <div className="flex flex-1 items-center gap-3">
                   <div className="flex flex-col gap-1.5 text-sm text-white">
