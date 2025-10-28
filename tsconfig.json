@@ -1,5 +1,5 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": "next",
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -33,5 +33,17 @@
     ".next",
     "dist",
     "prisma/**/*.ts"
-  ]
+  ],
+  "scripts": {
+    "check": "next telemetry disable && tsc --noEmit",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "next build",
+    "prepare": "npm run postinstall",
+    "heroku-postbuild": "npm run build",
+    "predeploy": "npm run build",
+    "deploy": "next export"
+  }
 }
