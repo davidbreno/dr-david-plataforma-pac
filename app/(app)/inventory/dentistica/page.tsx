@@ -91,13 +91,13 @@ export default function RestorativeInventoryPage() {
       <Card>
         <CardHeader>
           <CardTitle>Materiais de dentistica</CardTitle>
-          <CardDescription className="text-white/60">
+          <CardDescription className="text-[color:rgb(var(--foreground-rgb)/0.6)]">
             Controle resinas, adesivos e outros materiais restauradores.
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 px-6 pb-6">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-white/70">Nome do material</label>
+            <label className="text-sm font-medium text-[color:rgb(var(--foreground-rgb)/0.7)]">Nome do material</label>
             <Input
               value={form.nome}
               onChange={(event) => handleChange("nome", event.target.value)}
@@ -108,7 +108,7 @@ export default function RestorativeInventoryPage() {
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-white/70">Quantidade</label>
+              <label className="text-sm font-medium text-[color:rgb(var(--foreground-rgb)/0.7)]">Quantidade</label>
               <Input
                 type="number"
                 min="0"
@@ -119,7 +119,7 @@ export default function RestorativeInventoryPage() {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium text-white/70">Cor / Lote</label>
+              <label className="text-sm font-medium text-[color:rgb(var(--foreground-rgb)/0.7)]">Cor / Lote</label>
               <Input
                 value={form.cor}
                 onChange={(event) => handleChange("cor", event.target.value)}
@@ -129,7 +129,7 @@ export default function RestorativeInventoryPage() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-white/70">Observacoes</label>
+            <label className="text-sm font-medium text-[color:rgb(var(--foreground-rgb)/0.7)]">Observacoes</label>
             <Textarea
               rows={3}
               value={form.observacoes}
@@ -154,13 +154,13 @@ export default function RestorativeInventoryPage() {
       <Card className="h-fit">
         <CardHeader>
           <CardTitle>Itens cadastrados</CardTitle>
-          <CardDescription className="text-white/60">
+          <CardDescription className="text-[color:rgb(var(--foreground-rgb)/0.6)]">
             Atualize ou remova materiais conforme o consumo.
           </CardDescription>
         </CardHeader>
         <div className="space-y-3 px-6 pb-6">
           {items.length === 0 ? (
-            <p className="text-sm text-white/50">Nenhum material registrado no momento.</p>
+            <p className="text-sm text-[color:rgb(var(--foreground-rgb)/0.5)]">Nenhum material registrado no momento.</p>
           ) : (
             items.map((item) => (
               <div
@@ -168,14 +168,14 @@ export default function RestorativeInventoryPage() {
                 className="flex flex-col gap-3 rounded-2xl border border-[var(--border)] bg-surface p-4 shadow-inner"
               >
                 <div className="flex flex-col gap-1">
-                  <span className="text-sm font-semibold text-white">{item.nome}</span>
-                  <span className="text-xs text-white/60">Quantidade: {item.quantidade}</span>
+                  <span className="text-sm font-semibold text-[var(--foreground)]">{item.nome}</span>
+                  <span className="text-xs text-[color:rgb(var(--foreground-rgb)/0.6)]">Quantidade: {item.quantidade}</span>
                   {item.cor ? (
-                    <span className="text-xs text-white/60">Cor/Lote: {item.cor}</span>
+                    <span className="text-xs text-[color:rgb(var(--foreground-rgb)/0.6)]">Cor/Lote: {item.cor}</span>
                   ) : null}
                 </div>
                 {item.observacoes ? (
-                  <p className="text-xs text-white/60">{item.observacoes}</p>
+                  <p className="text-xs text-[color:rgb(var(--foreground-rgb)/0.6)]">{item.observacoes}</p>
                 ) : null}
                 <div className="flex gap-2">
                   <Button type="button" variant="secondary" onClick={() => handleEdit(item.id!)}>
@@ -193,5 +193,6 @@ export default function RestorativeInventoryPage() {
     </div>
   );
 }
+
 
 

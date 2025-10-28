@@ -35,33 +35,53 @@ function extractPatientPayload(formData: FormData) {
 export async function createPatientAction(formData: FormData) {
   const user = await getCurrentUser();
   if (!user) {
-    throw new Error("Não autorizado");
+    throw new Error("Nao autorizado");
   }
 
   const payload = extractPatientPayload(formData);
 
-  const patient = await prisma.patient.create({
-    data: {
-      firstName: payload.firstName,
-      lastName: payload.lastName,
-      fullName: `${payload.firstName} ${payload.lastName}`.trim(),
-      email: payload.email,
-      phone: payload.phone,
-      status: payload.status,
-      gender: payload.gender,
-      birthDate: payload.birthDate ? new Date(payload.birthDate) : undefined,
-      documentNumber: payload.documentNumber,
-      notes: payload.notes,
-      address: payload.address
-        ? (payload.address as Prisma.InputJsonValue)
-        : undefined,
-    },
-  });
+  if (payload.email) {
+    const existing = await prisma.patient.findUnique({
+      where: { email: payload.email },
+      select: { id: true },
+    });
+    if (existing) {
+      return { success: false, error: "EMAIL_ALREADY_EXISTS" } as const;
+    }
+  }
 
-  revalidatePath("/patients");
-  revalidatePath(`/patients/${patient.id}`);
+  try {
+    const patient = await prisma.patient.create({
+      data: {
+        firstName: payload.firstName,
+        lastName: payload.lastName,
+        fullName: ${payload.firstName} .trim(),
+        email: payload.email,
+        phone: payload.phone,
+        status: payload.status,
+        gender: payload.gender,
+        birthDate: payload.birthDate ? new Date(payload.birthDate) : undefined,
+        documentNumber: payload.documentNumber,
+        notes: payload.notes,
+        address: payload.address
+          ? (payload.address as Prisma.InputJsonValue)
+          : undefined,
+      },
+    });
 
-  return { success: true, patientId: patient.id };
+    revalidatePath("/patients");
+    revalidatePath(/patients/);
+
+    return { success: true, patientId: patient.id } as const;
+  } catch (error) {
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      error.code === "P2002"
+    ) {
+      return { success: false, error: "EMAIL_ALREADY_EXISTS" } as const;
+    }
+    throw error;
+  }
 }
 
 export async function updatePatientAction(id: string, formData: FormData) {

@@ -9,11 +9,9 @@ import {
   Cog,
   CreditCard,
   Files,
-  LifeBuoy,
   LayoutDashboard,
   LineChart,
   MessagesSquare,
-  Search,
   ShieldPlus,
   Users,
 } from "lucide-react";
@@ -42,7 +40,6 @@ const navSections = [
 
 const footerLinks = [
   { href: "/settings", label: "Configuracoes", icon: Cog, disabled: false },
-  { href: "#", label: "Ajuda & guias", icon: LifeBuoy, disabled: true },
 ];
 
 const highlightedItems = new Set(["/schedule", "/inventory"]);
@@ -61,7 +58,7 @@ export function Sidebar({ clinicName = "Dr. David Breno" }: SidebarProps) {
   }, [clinicName]);
 
   return (
-    <aside className="relative hidden h-screen w-72 shrink-0 border-r border-gray-200 bg-white px-4 pb-6 pt-5 shadow-[0_0_45px_rgba(200,200,200,0.15)] lg:flex lg:flex-col">
+    <aside className="relative hidden h-screen w-72 shrink-0 border-r border-gray-200 bg-white px-4 pb-6 pt-5 shadow-[0_12px_28px_rgba(17,24,32,0.08)] lg:flex lg:flex-col">
       <div className="space-y-4 px-1">
         <button
           type="button"
@@ -78,15 +75,6 @@ export function Sidebar({ clinicName = "Dr. David Breno" }: SidebarProps) {
           </div>
           <ChevronsUpDown className="h-4 w-4 text-gray-400" />
         </button>
-
-        <div className="relative">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Buscar..."
-            className="h-10 w-full rounded-xl border border-gray-200 bg-gray-50 pl-10 pr-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/20"
-          />
-        </div>
       </div>
 
       <nav className="mt-6 flex-1 overflow-y-auto px-1">
@@ -149,18 +137,6 @@ export function Sidebar({ clinicName = "Dr. David Breno" }: SidebarProps) {
               </>
             );
 
-            if (item.disabled) {
-              return (
-                <div
-                  key={item.label}
-                  aria-disabled
-                  className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium text-gray-300"
-                >
-                  {content}
-                </div>
-              );
-            }
-
             return (
               <Link
                 key={item.label}
@@ -176,3 +152,4 @@ export function Sidebar({ clinicName = "Dr. David Breno" }: SidebarProps) {
     </aside>
   );
 }
+

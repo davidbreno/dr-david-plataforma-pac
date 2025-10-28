@@ -9,7 +9,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-primary text-[var(--primary-foreground)] shadow-lg hover:bg-primary/90 focus-visible:ring-primary/40",
+          "bg-primary text-[var(--primary-foreground)] shadow-md hover:bg-primary/90 focus-visible:ring-primary/40",
         secondary:
           "border border-[var(--border)] bg-surface text-[var(--foreground)] shadow-sm hover:bg-surface-muted focus-visible:ring-primary/35",
         ghost:
@@ -57,4 +57,5 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   },
 );
 Button.displayName = "Button";
+
 

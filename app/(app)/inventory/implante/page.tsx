@@ -156,14 +156,14 @@ export default function ImplantInventoryPage() {
     <div className="grid gap-4 lg:grid-cols-[300px_1fr]">
       <Card className="border-none bg-transparent shadow-none">
         <CardHeader className="pb-0">
-          <CardTitle className="text-sm uppercase tracking-[0.3em] text-white/70">Estoque de implante</CardTitle>
+          <CardTitle className="text-sm uppercase tracking-[0.3em] text-[color:rgb(var(--foreground-rgb)/0.7)]">Estoque de implante</CardTitle>
         </CardHeader>
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-3 rounded-2xl border border-[var(--border)] bg-surface px-5 pb-5 pt-4 shadow-lg"
         >
           <div className="space-y-2">
-            <label className="text-sm font-medium text-white/70">Tipo</label>
+            <label className="text-sm font-medium text-[color:rgb(var(--foreground-rgb)/0.7)]">Tipo</label>
             <Select
               value={form.tipo}
               onChange={(event) => handleChange("tipo", event.target.value)}
@@ -178,7 +178,7 @@ export default function ImplantInventoryPage() {
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-white/70">Comprimento (mm)</label>
+              <label className="text-sm font-medium text-[color:rgb(var(--foreground-rgb)/0.7)]">Comprimento (mm)</label>
               <Input
                 value={form.comprimento}
                 onChange={(event) => handleChange("comprimento", event.target.value)}
@@ -187,7 +187,7 @@ export default function ImplantInventoryPage() {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium text-white/70">diametro (mm)</label>
+              <label className="text-sm font-medium text-[color:rgb(var(--foreground-rgb)/0.7)]">diametro (mm)</label>
               <Input
                 value={form.diametro}
                 onChange={(event) => handleChange("diametro", event.target.value)}
@@ -199,7 +199,7 @@ export default function ImplantInventoryPage() {
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-white/70">Quantidade</label>
+              <label className="text-sm font-medium text-[color:rgb(var(--foreground-rgb)/0.7)]">Quantidade</label>
               <Input
                 type="number"
                 min="0"
@@ -210,7 +210,7 @@ export default function ImplantInventoryPage() {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium text-white/70">Marca</label>
+              <label className="text-sm font-medium text-[color:rgb(var(--foreground-rgb)/0.7)]">Marca</label>
               <Input
                 value={form.marca}
                 onChange={(event) => handleChange("marca", event.target.value)}
@@ -251,16 +251,16 @@ export default function ImplantInventoryPage() {
                 className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-surface-muted px-3 py-2 shadow-md"
               >
                 <div className="flex flex-1 items-center gap-3">
-                  <div className="flex flex-col gap-1.5 text-sm text-white">
+                  <div className="flex flex-col gap-1.5 text-sm text-[var(--foreground)]">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="rounded-lg bg-white/10 px-2 py-1 text-xs font-semibold uppercase tracking-[0.2em]">
                         {item.tipo}
                       </span>
-                      <span className="text-white/70">
+                      <span className="text-[color:rgb(var(--foreground-rgb)/0.7)]">
                         {item.comprimento} mm x {item.diametro} mm
                       </span>
                     </div>
-                    <div className="rounded-lg bg-white/5 px-3 py-1 text-xs text-white/60">
+                    <div className="rounded-lg bg-white/5 px-3 py-1 text-xs text-[color:rgb(var(--foreground-rgb)/0.6)]">
                       Quantidade: {item.quantidade} &nbsp; Marca: {item.marca}
                     </div>
                   </div>
@@ -292,6 +292,7 @@ export default function ImplantInventoryPage() {
     </div>
   );
 }
+
 
 
 

@@ -175,39 +175,39 @@ export default async function DashboardPage() {
         <section className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <Card className="bg-surface">
             <CardHeader className="flex flex-col gap-2">
-              <CardTitle className="text-sm font-medium uppercase tracking-[0.18em] text-white/70">
+              <CardTitle className="text-sm font-medium uppercase tracking-[0.18em] text-[color:rgb(var(--foreground-rgb)/0.7)]">
                 Receita do mês
               </CardTitle>
-              <p className="text-3xl font-semibold text-white">
+              <p className="text-3xl font-semibold text-[var(--foreground)]">
                 {formatCurrency(totalIncome)}
               </p>
-              <CardDescription className="text-xs text-white/50">
+              <CardDescription className="text-xs text-[color:rgb(var(--foreground-rgb)/0.5)]">
                 +12% vs mes anterior
               </CardDescription>
             </CardHeader>
           </Card>
           <Card className="bg-surface-muted">
             <CardHeader className="flex flex-col gap-2">
-              <CardTitle className="text-sm font-medium uppercase tracking-[0.18em] text-white/70">
+              <CardTitle className="text-sm font-medium uppercase tracking-[0.18em] text-[color:rgb(var(--foreground-rgb)/0.7)]">
                 Despesas do mês
               </CardTitle>
-              <p className="text-3xl font-semibold text-white">
+              <p className="text-3xl font-semibold text-[var(--foreground)]">
                 {formatCurrency(totalExpense)}
               </p>
-              <CardDescription className="text-xs text-white/50">
+              <CardDescription className="text-xs text-[color:rgb(var(--foreground-rgb)/0.5)]">
                 -4% vs mes anterior
               </CardDescription>
             </CardHeader>
           </Card>
           <Card className="bg-surface-contrast">
             <CardHeader className="flex flex-col gap-2">
-              <CardTitle className="text-sm font-medium uppercase tracking-[0.18em] text-white/70">
+              <CardTitle className="text-sm font-medium uppercase tracking-[0.18em] text-[color:rgb(var(--foreground-rgb)/0.7)]">
                 Balanço
               </CardTitle>
-              <p className="text-3xl font-semibold text-white">
+              <p className="text-3xl font-semibold text-[var(--foreground)]">
                 {formatCurrency(netBalance)}
               </p>
-              <CardDescription className="text-xs text-white/50">
+              <CardDescription className="text-xs text-[color:rgb(var(--foreground-rgb)/0.5)]">
                 Última atualização {format(now, "dd/MM HH:mm")}
               </CardDescription>
             </CardHeader>
@@ -238,16 +238,16 @@ export default async function DashboardPage() {
                   className="flex items-center justify-between px-6 py-4"
                 >
                   <div>
-                    <p className="font-semibold text-white">
+                    <p className="font-semibold text-[var(--foreground)]">
                       {appointment.patient.fullName ||
                         `${appointment.patient.firstName} ${appointment.patient.lastName}`}
                     </p>
-                    <p className="text-xs text-white/50">
+                    <p className="text-xs text-[color:rgb(var(--foreground-rgb)/0.5)]">
                       {appointment.title}
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-medium text-white/70">
+                    <p className="text-sm font-medium text-[color:rgb(var(--foreground-rgb)/0.7)]">
                       {formatDateTime(appointment.startAt)}
                     </p>
                     <Badge
@@ -305,13 +305,13 @@ export default async function DashboardPage() {
                   color: ["#f2f2f2", "#cfcfcf", "#9a9a9a", "#6f6f6f"][index % 4],
                 }))}
               />
-              <div className="mt-4 grid grid-cols-2 gap-3 text-xs text-white/60">
+              <div className="mt-4 grid grid-cols-2 gap-3 text-xs text-[color:rgb(var(--foreground-rgb)/0.6)]">
                 {Object.entries(ageGroups).map(([label, value]) => (
                   <div
                     key={label}
                     className="flex items-center gap-2 rounded-xl bg-surface-muted px-3 py-2"
                   >
-                    <span className="font-semibold text-white/70">{value}</span>
+                    <span className="font-semibold text-[color:rgb(var(--foreground-rgb)/0.7)]">{value}</span>
                     <span>{label}</span>
                   </div>
                 ))}
@@ -346,9 +346,9 @@ export default async function DashboardPage() {
                     className="flex items-start justify-between rounded-xl border border-white/10 bg-white px-4 py-3"
                   >
                     <div>
-                      <p className="font-medium text-white">{task.title}</p>
+                      <p className="font-medium text-[var(--foreground)]">{task.title}</p>
                       {task.description ? (
-                        <p className="text-xs text-white/50">
+                        <p className="text-xs text-[color:rgb(var(--foreground-rgb)/0.5)]">
                           {task.description}
                         </p>
                       ) : null}
@@ -395,11 +395,11 @@ export default async function DashboardPage() {
                     className="flex items-start justify-between rounded-xl border border-white/10 bg-white px-4 py-3"
                   >
                     <div>
-                      <p className="font-medium text-white">
+                      <p className="font-medium text-[var(--foreground)]">
                         {response.patient.fullName ||
                           response.patient.firstName}
                       </p>
-                      <p className="text-xs text-white/50">
+                      <p className="text-xs text-[color:rgb(var(--foreground-rgb)/0.5)]">
                         {response.template.name}
                       </p>
                     </div>
@@ -444,7 +444,7 @@ export default async function DashboardPage() {
                 className="rounded-xl border border-white/10 bg-white px-4 py-3"
               >
                 <div className="flex items-center justify-between">
-                  <p className="font-medium text-white">
+                  <p className="font-medium text-[var(--foreground)]">
                     {formatDateTime(appointment.startAt, "dd/MM HH:mm")}
                   </p>
                   <Badge variant="outline">
@@ -454,7 +454,7 @@ export default async function DashboardPage() {
                   </Badge>
                 </div>
                 <p className="text-sm text-slate-500">{appointment.title}</p>
-                <p className="text-sm text-white/70">
+                <p className="text-sm text-[color:rgb(var(--foreground-rgb)/0.7)]">
                   {appointment.patient.fullName || appointment.patient.firstName}
                 </p>
               </div>
@@ -500,5 +500,6 @@ export default async function DashboardPage() {
     </div>
   );
 }
+
 
 

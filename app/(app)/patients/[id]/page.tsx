@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { uploadAttachmentAction, deleteAttachmentAction } from "@/lib/actions/upload-actions";
+import { PatientAnamnesis } from "@/components/patient/patient-anamnesis";
+import { getLatestOdontogram } from "@/lib/actions/odontogram-actions";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
@@ -75,6 +77,7 @@ export default async function PatientDetailPage({
     notFound();
   }
 
+  const odontogram = await getLatestOdontogram(patient.id);
   const templates = await prisma.anamnesisTemplate.findMany({
     orderBy: { name: "asc" },
   });
@@ -264,7 +267,33 @@ export default async function PatientDetailPage({
             )}
           </div>
         </Card>
-      </section>
+        <Card>
+          <CardHeader>
+            <CardTitle>Anamnese completa</CardTitle>
+            <CardDescription>
+              Registre observações clínicas detalhadas vinculadas ao odontograma do paciente.
+            </CardDescription>
+          </CardHeader>
+          <div className="px-6 pb-6">
+            <PatientAnamnesis
+              patientId={patient.id}
+              responseSetId={odontogram?.responseSetId ?? undefined}
+              odontogram={
+                odontogram
+                  ? {
+                      chartType: odontogram.chartType,
+                      entries: odontogram.entries.map((entry) => ({
+                        toothNumber: entry.toothNumber,
+                        status: entry.status,
+                        annotations: entry.annotations ?? undefined,
+                      })),
+                    }
+                  : undefined
+              }
+            />
+          </div>
+        </Card>
+        </section>
 
       <Card>
         <CardHeader>

@@ -72,6 +72,23 @@ enum TransactionStatus {
   OVERDUE
 }
 
+enum AnamnesisStatus {
+  OPEN
+  FINALIZED
+}
+
+enum OdontogramChartType {
+  PERMANENT
+  DECIDUOUS
+}
+
+enum ToothStatus {
+  OPEN
+  IN_PROGRESS
+  COMPLETED
+  NOTE
+}
+
 model User {
   id            String           @id @default(cuid())
   name          String
@@ -88,6 +105,7 @@ model User {
   anamnesisSets AnamnesisResponseSet[] @relation("ResponseFilledBy")
   clinicalNotes ClinicalNote[]   @relation("ClinicalNoteAuthor")
   notifications Notification[]   @relation("NotificationRecipient")
+  odontogramEntries OdontogramEntry[]
 }
 
 model Patient {
@@ -110,6 +128,7 @@ model Patient {
   anamnesisSets  AnamnesisResponseSet[]
   finances       FinancialTransaction[]
   attachments    Attachment[]
+  odontogramRecords OdontogramRecord[]
 
   @@index([status])
   @@index([fullName])
@@ -215,10 +234,12 @@ model AnamnesisResponseSet {
   filledBy       User?              @relation("ResponseFilledBy", fields: [filledById], references: [id])
   filledById     String?
   filledAt       DateTime           @default(now())
+  status         AnamnesisStatus    @default(OPEN)
   paymentStatus  PaymentStatus      @default(UNPAID)
   amountDue      Decimal?           @db.Decimal(10, 2)
   amountPaid     Decimal?           @db.Decimal(10, 2)
   notes          String?
+  odontogram     OdontogramRecord?  @relation("ResponseSetOdontogram")
   createdAt      DateTime           @default(now())
   updatedAt      DateTime           @updatedAt
 
@@ -263,6 +284,37 @@ model Attachment {
 
   @@index([patientId])
   @@index([appointmentId])
+}
+
+model OdontogramRecord {
+  id            String                @id @default(cuid())
+  patient       Patient               @relation(fields: [patientId], references: [id])
+  patientId     String
+  responseSet   AnamnesisResponseSet? @relation("ResponseSetOdontogram", fields: [responseSetId], references: [id])
+  responseSetId String?               @unique
+  chartType     OdontogramChartType   @default(PERMANENT)
+  notes         String?
+  entries       OdontogramEntry[]
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+
+  @@index([patientId])
+}
+
+model OdontogramEntry {
+  id            String           @id @default(cuid())
+  odontogram    OdontogramRecord @relation(fields: [odontogramId], references: [id])
+  odontogramId  String
+  toothNumber   String
+  region        String?
+  annotations   String?
+  status        ToothStatus      @default(OPEN)
+  author        User?            @relation(fields: [authorId], references: [id])
+  authorId      String?
+  createdAt     DateTime         @default(now())
+
+  @@index([odontogramId])
+  @@index([toothNumber])
 }
 
 model FinancialTransaction {
