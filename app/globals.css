@@ -24,24 +24,24 @@
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --background: #11181d;
-  --background-gradient: linear-gradient(135deg, #16252c 0%, #0d161b 100%);
-  --background-muted: #172127;
-  --foreground: #f0f7f9;
-  --surface: #1b252c;
-  --surface-muted: #233039;
-  --surface-contrast: #2c3b45;
-  --primary: #3bdab6;
-  --primary-foreground: #061f1a;
-  --accent: #5ce2c5;
-  --muted: #9db4c1;
-  --success: #42d6a6;
-  --warning: #f3c46a;
-  --danger: #f78d85;
-  --border: #31414b;
-  --foreground-rgb: 240 247 249;
-  --surface-rgb: 27 37 44;
-  --primary-rgb: 59 218 182;
+  --background: #1b2731;
+  --background-gradient: linear-gradient(135deg, #243743 0%, #141f27 100%);
+  --background-muted: #222f39;
+  --foreground: #f3fbff;
+  --surface: #273540;
+  --surface-muted: #31414c;
+  --surface-contrast: #3a4c58;
+  --primary: #46e2bd;
+  --primary-foreground: #06221a;
+  --accent: #6af0ca;
+  --muted: #afc4cf;
+  --success: #4bdcb0;
+  --warning: #f5c978;
+  --danger: #f7948b;
+  --border: #3d5060;
+  --foreground-rgb: 243 251 255;
+  --surface-rgb: 39 53 64;
+  --primary-rgb: 70 226 189;
 }
 
 @theme inline {
@@ -170,11 +170,11 @@ body {
   }
 
   .shadow-sm {
-    --tw-shadow-color: rgba(17, 24, 27, 0.16);
+    --tw-shadow-color: rgba(23, 33, 41, 0.16);
   }
 
   .shadow-lg {
-    --tw-shadow-color: rgba(17, 24, 27, 0.22);
+    --tw-shadow-color: rgba(23, 33, 41, 0.22);
   }
 }
 

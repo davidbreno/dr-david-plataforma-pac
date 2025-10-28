@@ -66,6 +66,10 @@ export default async function PatientDetailPage({
 }: {
   params: { id: string };
 }) {
+  if (!params?.id) {
+    notFound();
+  }
+
   const patient = await getPatient(params.id);
   if (!patient) {
     notFound();

@@ -109,7 +109,7 @@ export function Sidebar({ clinicName = "Dr. David Breno" }: SidebarProps) {
                       className={cn(
                         "group flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium transition",
                         isActive
-                          ? "bg-primary/10 text-primary shadow-[0_12px_26px_rgba(155,91,255,0.10)]"
+                          ? "bg-primary/10 text-primary shadow-[0_12px_26px_rgba(70,226,189,0.12)]"
                           : "text-gray-700 hover:bg-gray-100 hover:text-gray-900",
                       )}
                     >
