@@ -6,6 +6,11 @@ import { Prisma } from "@prisma/client";
 import { patientSchema } from "@/lib/schemas/patient";
 import { getCurrentUser } from "@/lib/auth/session";
 
+/** Por que: evita espaços duplos e lida com valores vazios */
+function computeFullName(first?: string, last?: string) {
+  return [first?.trim(), last?.trim()].filter(Boolean).join(" ").trim();
+}
+
 function extractPatientPayload(formData: FormData) {
   const base = {
     firstName: String(formData.get("firstName") ?? "").trim(),
@@ -55,7 +60,7 @@ export async function createPatientAction(formData: FormData) {
       data: {
         firstName: payload.firstName,
         lastName: payload.lastName,
-        fullName: ${payload.firstName} .trim(),
+        fullName: computeFullName(payload.firstName, payload.lastName),
         email: payload.email,
         phone: payload.phone,
         status: payload.status,
@@ -70,7 +75,7 @@ export async function createPatientAction(formData: FormData) {
     });
 
     revalidatePath("/patients");
-    revalidatePath(/patients/);
+    // removido: revalidatePath(/patients/) -> inválido; regex aqui quebra parse
 
     return { success: true, patientId: patient.id } as const;
   } catch (error) {
@@ -97,7 +102,7 @@ export async function updatePatientAction(id: string, formData: FormData) {
     data: {
       firstName: payload.firstName,
       lastName: payload.lastName,
-      fullName: `${payload.firstName} ${payload.lastName}`.trim(),
+      fullName: computeFullName(payload.firstName, payload.lastName),
       email: payload.email,
       phone: payload.phone,
       status: payload.status,
