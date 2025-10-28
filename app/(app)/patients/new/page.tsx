@@ -41,8 +41,13 @@ export default function NewPatientPage({
         action={async (formData) => {
           "use server";
           const result = await createPatientAction(formData);
-          if (!result.success) {
-            redirect(`/patients/new?error=${result.error}`);
+          if (!result?.success) {
+            // por segurança, garante string e codifica querystring
+            const msg =
+              typeof result?.error === "string" && result.error.trim()
+                ? result.error
+                : "unknown_error";
+            redirect(`/patients/new?error=${encodeURIComponent(msg)}`);
           }
           redirect("/patients");
         }}
@@ -133,4 +138,3 @@ export default function NewPatientPage({
     </div>
   );
 }
-

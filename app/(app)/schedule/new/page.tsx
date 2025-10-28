@@ -49,7 +49,7 @@ export default async function NewAppointmentPage({
                   </option>
                   {patients.map((patient) => (
                     <option key={patient.id} value={patient.id}>
-                      {patient.fullName || ${patient.firstName} }
+                      {patient.fullName || patient.firstName}
                     </option>
                   ))}
                 </Select>
@@ -100,4 +100,3 @@ export default async function NewAppointmentPage({
     </div>
   );
 }
-
