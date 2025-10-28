@@ -173,7 +173,7 @@ export default async function DashboardPage() {
     <div className="grid grid-cols-1 gap-6 xl:grid-cols-[1.9fr_1fr]">
       <div className="space-y-6">
         <section className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          <Card className="bg-[#1f1f1f]">
+          <Card className="bg-surface">
             <CardHeader className="flex flex-col gap-2">
               <CardTitle className="text-sm font-medium uppercase tracking-[0.18em] text-white/70">
                 Receita do mês
@@ -186,7 +186,7 @@ export default async function DashboardPage() {
               </CardDescription>
             </CardHeader>
           </Card>
-          <Card className="bg-[#2a2a2a]">
+          <Card className="bg-surface-muted">
             <CardHeader className="flex flex-col gap-2">
               <CardTitle className="text-sm font-medium uppercase tracking-[0.18em] text-white/70">
                 Despesas do mês
@@ -199,7 +199,7 @@ export default async function DashboardPage() {
               </CardDescription>
             </CardHeader>
           </Card>
-          <Card className="bg-[#1c1c1c]">
+          <Card className="bg-surface-contrast">
             <CardHeader className="flex flex-col gap-2">
               <CardTitle className="text-sm font-medium uppercase tracking-[0.18em] text-white/70">
                 Balanço
