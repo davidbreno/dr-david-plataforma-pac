@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { redirect } from "next/navigation";
 import { Sidebar } from "./sidebar";
 import { Topbar } from "./topbar";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -9,6 +10,10 @@ type AppShellProps = {
 
 export async function AppShell({ children }: AppShellProps) {
   const user = await getCurrentUser();
+
+  if (!user) {
+    redirect("/login");
+  }
 
   return (
     <div className="flex min-h-screen bg-transparent text-foreground">
