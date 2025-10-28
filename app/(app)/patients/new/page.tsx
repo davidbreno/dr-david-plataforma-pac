@@ -44,7 +44,7 @@ export default function NewPatientPage({
           if (!result.success) {
             redirect(/patients/new?error=);
           }
-          redirect(/patients/);
+          redirect("/patients");
         }}
         className="space-y-6"
       >

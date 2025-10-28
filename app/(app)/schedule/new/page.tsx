@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Select } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+
 export default async function NewAppointmentPage({
   searchParams,
 }: {
@@ -29,7 +30,7 @@ export default async function NewAppointmentPage({
         action={async (formData) => {
           "use server";
           await upsertAppointmentAction(formData);
-          redirect(/patients/);
+          redirect("/patients");
         }}
         className="space-y-6"
       >
@@ -99,5 +100,3 @@ export default async function NewAppointmentPage({
     </div>
   );
 }
-
-
