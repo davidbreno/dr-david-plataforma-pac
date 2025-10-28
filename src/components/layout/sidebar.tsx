@@ -36,9 +36,9 @@ export function Sidebar({ clinicName = "Dr. David Breno" }: SidebarProps) {
   const pathname = usePathname();
 
   return (
-    <aside className="relative hidden h-screen w-64 shrink-0 rounded-r-3xl border-r border-[#2a2a2a] bg-gradient-to-b from-[#0f0f0f] via-[#161616] to-[#202020] shadow-[0_0_35px_rgba(0,0,0,0.45)] lg:flex lg:flex-col">
-      <div className="flex items-center gap-3 border-b border-white/10 px-6 py-5">
-        <div className="relative h-9 w-9 overflow-hidden rounded-lg bg-white/5 backdrop-blur">
+    <aside className="relative hidden h-screen w-64 shrink-0 rounded-r-3xl border-r border-border bg-surface-muted shadow-[0_0_35px_rgba(13,15,14,0.08)] lg:flex lg:flex-col">
+      <div className="flex items-center gap-3 border-b border-white/20 px-6 py-5">
+        <div className="relative h-9 w-9 overflow-hidden rounded-lg bg-white/90 backdrop-blur">
           <Image
             src="/logo-dr-david.png"
             alt="Logo Dr. David Breno"
@@ -69,8 +69,8 @@ export function Sidebar({ clinicName = "Dr. David Breno" }: SidebarProps) {
               className={cn(
                 "flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium transition-colors",
                 isActive
-                  ? "bg-white/10 text-white shadow-[0_12px_26px_rgba(0,0,0,0.45)]"
-                  : "text-white/60 hover:bg-white/5 hover:text-white",
+                  ? "bg-white/20 text-white shadow-[0_12px_26px_rgba(13,15,14,0.1)]"
+                  : "text-white/60 hover:bg-white/10 hover:text-white",
               )}
             >
               <Icon className={cn("h-5 w-5", isActive ? "text-white" : "text-white/60")} />
@@ -80,11 +80,10 @@ export function Sidebar({ clinicName = "Dr. David Breno" }: SidebarProps) {
         })}
       </nav>
 
-      <div className="pointer-events-none absolute right-0 top-3 bottom-3 w-[2px] rounded-full bg-gradient-to-b from-[#2a2a2a] to-[#3a3a3a] opacity-70" />
+      <div className="pointer-events-none absolute right-0 top-3 bottom-3 w-[2px] rounded-full bg-gradient-to-b from-white/10 to-white/5 opacity-70" />
     </aside>
   );
 }
-
 
 
 

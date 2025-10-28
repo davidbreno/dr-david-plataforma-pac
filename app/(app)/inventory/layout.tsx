@@ -19,7 +19,7 @@ export default function InventoryLayout({ children }: InventoryLayoutProps) {
 
   return (
     <div className="flex flex-col gap-6">
-      <header className="rounded-3xl border border-white/10 bg-[#1c1c1c] px-6 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.4)]">
+      <header className="rounded-3xl border border-white/20 bg-white/95 px-6 py-4 shadow-[0_10px_30px_rgba(13,15,14,0.12)]">
         <div className="flex flex-col gap-2">
           <h1 className="text-2xl font-semibold text-white">Controle de Estoque</h1>
           <p className="text-sm text-white/60">
@@ -35,8 +35,8 @@ export default function InventoryLayout({ children }: InventoryLayoutProps) {
                 href={section.href}
                 className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${
                   active
-                    ? "bg-[#c97c02] text-white"
-                    : "bg-[#e67c27] text-white/70 hover:bg-white/10 hover:text-white"
+                    ? "bg-primary text-[var(--primary-foreground)] shadow-sm"
+                    : "bg-white/20 text-white/70 hover:bg-white/30 hover:text-white"
                 }`}
               >
                 {section.label}
@@ -50,6 +50,5 @@ export default function InventoryLayout({ children }: InventoryLayoutProps) {
     </div>
   );
 }
-
 
 

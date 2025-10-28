@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import { SessionProvider } from "next-auth/react";
 import { ReactNode, useState } from "react";
@@ -7,6 +7,7 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ThemeProvider } from "./theme-provider";
 
 type AppProviderProps = {
   children: ReactNode;
@@ -25,11 +26,13 @@ export function AppProvider({ children }: AppProviderProps) {
   );
 
   return (
-    <SessionProvider>
-      <QueryClientProvider client={queryClient}>
-        {children}
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </SessionProvider>
+    <ThemeProvider>
+      <SessionProvider>
+        <QueryClientProvider client={queryClient}>
+          {children}
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </SessionProvider>
+    </ThemeProvider>
   );
 }
