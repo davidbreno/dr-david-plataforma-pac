@@ -5,21 +5,21 @@
   --background: #f9f4ed;
   --background-gradient: linear-gradient(135deg, #fdf8f1 0%, #f3e5d3 100%);
   --background-muted: #f3e5d3;
-  --foreground: #3d2a1b;
+  --foreground: #3d2a1ba8;
   --surface: #fff8f0;
   --surface-muted: #f1dec6;
   --surface-contrast: #eed3b8;
-  --primary: #c48445;
+  --primary: #a1784fab;
   --primary-foreground: #ffffff;
-  --accent: #a36a3c;
-  --muted: #8a735d;
+  --accent: #a36a3cce;
+  --muted: #8a735dc3;
   --success: #4fb48c;
   --warning: #d9913b;
   --danger: #d1604d;
   --border: #e4d3ba;
-  --foreground-rgb: 61 42 27;
+  --foreground: #482e067f;
   --surface-rgb: 255 248 240;
-  --primary-rgb: 196 132 69;
+  --primary: #ac9278dc;
 }
 
 [data-theme="dark"] {
