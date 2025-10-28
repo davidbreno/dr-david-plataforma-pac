@@ -5,7 +5,7 @@ export function Card({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
   return (
     <div
       className={cn(
-        "rounded-3xl border border-white/10 bg-surface p-6 shadow-[0_18px_36px_rgba(0,0,0,0.35)] transition-colors hover:border-white/15 hover:bg-surface-muted",
+        "rounded-3xl border border-white/10 bg-surface p-6 shadow-[0_18px_36px_rgba(8,14,16,0.28)] transition-colors hover:border-white/15 hover:bg-surface-muted",
         className,
       )}
       {...props}
@@ -18,7 +18,7 @@ export function CardHeader({ className, ...props }: React.HTMLAttributes<HTMLDiv
 }
 
 export function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
-  return <h3 className={cn("text-base font-semibold text-white", className)} {...props} />;
+  return <h3 className={cn("text-base font-semibold text-[var(--foreground)]", className)} {...props} />;
 }
 
 export function CardDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
