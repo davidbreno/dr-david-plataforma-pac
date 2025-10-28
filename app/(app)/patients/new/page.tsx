@@ -42,7 +42,7 @@ export default function NewPatientPage({
           "use server";
           const result = await createPatientAction(formData);
           if (!result.success) {
-            redirect(/patients/new?error=);
+            redirect(`/patients/new?error=${result.error}`);
           }
           redirect("/patients");
         }}
@@ -133,3 +133,4 @@ export default function NewPatientPage({
     </div>
   );
 }
+
