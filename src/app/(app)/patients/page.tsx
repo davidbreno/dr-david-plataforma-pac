@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
-import { PatientTable, type PatientRow } from "@/components/patients/patient-table";
+import { PatientTable, type PatientRow } from "@/components/patients-COMP/patient-table";
 
 type SearchParams = {
   search?: string;
