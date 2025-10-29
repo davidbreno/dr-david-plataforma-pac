@@ -14,7 +14,38 @@ async function main(): Promise<void> {
     }
   });
 
-  console.log("Seed OK");
+  // Pacientes de exemplo
+  await prisma.patient.createMany({
+    data: [
+      {
+        id: "cmhb28bh40001utzknotxw054",
+        firstName: "João",
+        lastName: "Silva",
+        fullName: "João Silva",
+        status: "ACTIVE",
+        gender: "MALE",
+        birthDate: new Date("1990-01-01"),
+        email: "joao.silva@example.com",
+        phone: "11999999999",
+        documentNumber: "12345678900"
+      },
+      {
+        id: "cmhc0px8s0000tuc16fioio5",
+        firstName: "Maria",
+        lastName: "Oliveira",
+        fullName: "Maria Oliveira",
+        status: "ACTIVE",
+        gender: "FEMALE",
+        birthDate: new Date("1985-05-15"),
+        email: "maria.oliveira@example.com",
+        phone: "11988888888",
+        documentNumber: "98765432100"
+      }
+    ],
+    skipDuplicates: true
+  });
+
+  console.log("Seed OK: Usuário e pacientes criados");
 }
 
 main()
