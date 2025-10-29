@@ -18,10 +18,7 @@ export default function LoginPage() {
   return (
     <div className="mx-auto flex w-full max-w-5xl overflow-hidden rounded-3xl border border-white/20 bg-white shadow-2xl backdrop-blur">
       <div
-        className="hidden w-1/2 flex-col justify-between p-10 text-white lg:flex"
-        style={{
-          background: "linear-gradient(150deg, var(--background-muted) 0%, var(--surface-contrast) 100%)",
-        }}
+        className="hidden w-1/2 flex-col justify-between p-10 text-white lg:flex bg-gradient-to-br from-[var(--background-muted)] to-[var(--surface-contrast)]"
       >
         <div className="flex items-center gap-3">
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20">
@@ -71,11 +68,11 @@ export default function LoginPage() {
 
         <p className="text-xs text-white/50">
           Ao continuar voce concorda com os{" "}
-          <a href="/terms" className="font-medium text-white hover:underline">
+          <a href="/terms" className="font-medium text-white hover:underline" title="Ver Termos de Uso">
             Termos de Uso
           </a>{" "}
           e{" "}
-          <a href="/privacy" className="font-medium text-white hover:underline">
+          <a href="/privacy" className="font-medium text-white hover:underline" title="Ver Politica de Privacidade">
             Politica de Privacidade
           </a>
           .

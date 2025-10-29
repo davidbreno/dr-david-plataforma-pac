@@ -88,8 +88,10 @@ export function Topbar({ user }: TopbarProps) {
       </button>
 
       <button
-        type="button"
-        className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-surface text-[color:rgb(var(--foreground-rgb)/0.65)] shadow-sm transition hover:border-primary/60 hover:text-[var(--foreground)]"
+  type="button"
+  className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-surface text-[color:rgb(var(--foreground-rgb)/0.65)] shadow-sm transition hover:border-primary/60 hover:text-[var(--foreground)]"
+  aria-label="Notificações"
+  title="Notificações"
       >
         <Bell className="h-5 w-5" />
         <span className="absolute right-1.5 top-1.5 inline-flex h-2.5 w-2.5 rounded-full bg-danger" />
