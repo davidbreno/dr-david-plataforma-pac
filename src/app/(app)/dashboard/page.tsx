@@ -156,15 +156,15 @@ export default async function DashboardPage() {
   );
 
   const totalIncome = financialTransactions
-    .filter((tx) => tx.type === "INCOME")
-    .reduce((acc, tx) => acc + toNumber(tx.amount), 0);
+  .filter((tx: FinancialTransaction) => tx.type === "INCOME")
+  .reduce((acc: number, tx: FinancialTransaction) => acc + toNumber(tx.amount), 0);
   const totalExpense = financialTransactions
-    .filter((tx) => tx.type === "EXPENSE")
-    .reduce((acc, tx) => acc + toNumber(tx.amount), 0);
+  .filter((tx: FinancialTransaction) => tx.type === "EXPENSE")
+  .reduce((acc: number, tx: FinancialTransaction) => acc + toNumber(tx.amount), 0);
   const netBalance = totalIncome - totalExpense;
 
   const ageGroups = groupByAge(patients);
-  const patientByGender = patientGenderGroup.map((item) => ({
+  const patientByGender = patientGenderGroup.map((item: { gender: string; _count: { gender: number } }) => ({
     label: item.gender,
     value: item._count.gender,
   }));
@@ -222,7 +222,7 @@ export default async function DashboardPage() {
                 Seus próximos pacientes confirmados
               </CardDescription>
             </div>
-            <Button asChild variant="outline" size="sm">
+            <Button asChild>
               <Link href="/schedule">Ver agenda</Link>
             </Button>
           </CardHeader>
@@ -232,7 +232,7 @@ export default async function DashboardPage() {
                 Nenhuma sessão futura cadastrada.
               </p>
             ) : (
-              upcomingAppointments.map((appointment) => (
+              upcomingAppointments.map((appointment: typeof upcomingAppointments[0]) => (
                 <div
                   key={appointment.id}
                   className="flex items-center justify-between px-6 py-4"
@@ -299,7 +299,7 @@ export default async function DashboardPage() {
             </CardHeader>
             <div className="px-4 pb-6">
               <PatientDemographicsChart
-                data={patientByGender.map((item, index) => ({
+                data={patientByGender.map((item: typeof patientByGender[0], index: number) => ({
                   label: item.label,
                   value: item.value,
                   color: ["#f2f2f2", "#cfcfcf", "#9a9a9a", "#6f6f6f"][index % 4],
@@ -327,7 +327,7 @@ export default async function DashboardPage() {
                 <CardTitle className="text-lg">Tarefas prioritárias</CardTitle>
                 <CardDescription>Organize ações da equipe</CardDescription>
               </div>
-              <Button asChild variant="ghost" size="sm">
+              <Button asChild>
                 <Link href="/tasks">
                   <NotebookPen className="mr-2 h-4 w-4" />
                   Nova tarefa
@@ -340,7 +340,7 @@ export default async function DashboardPage() {
                   Tudo em dia! Sem pendências.
                 </p>
               ) : (
-                pendingTasks.map((task) => (
+                pendingTasks.map((task: typeof pendingTasks[0]) => (
                   <div
                     key={task.id}
                     className="flex items-start justify-between rounded-xl border border-white/10 bg-white px-4 py-3"
@@ -376,7 +376,7 @@ export default async function DashboardPage() {
                   Acompanhamento de pagamentos e alertas
                 </CardDescription>
               </div>
-              <Button asChild variant="ghost" size="sm">
+              <Button asChild>
                 <Link href="/anamnesis">
                   <Files className="mr-2 h-4 w-4" />
                   Ver modelos
@@ -389,7 +389,7 @@ export default async function DashboardPage() {
                   Sem pendências de anamnese.
                 </p>
               ) : (
-                openAnamnesis.map((response) => (
+                openAnamnesis.map((response: typeof openAnamnesis[0]) => (
                   <div
                     key={response.id}
                     className="flex items-start justify-between rounded-xl border border-white/10 bg-white px-4 py-3"
@@ -438,7 +438,7 @@ export default async function DashboardPage() {
             </CardDescription>
           </CardHeader>
           <div className="space-y-4 px-6 pb-6">
-            {upcomingAppointments.slice(0, 4).map((appointment) => (
+            {upcomingAppointments.slice(0, 4).map((appointment: typeof upcomingAppointments[0]) => (
               <div
                 key={appointment.id}
                 className="rounded-xl border border-white/10 bg-white px-4 py-3"
@@ -476,20 +476,20 @@ export default async function DashboardPage() {
             <CardDescription>Acelere suas rotinas diárias</CardDescription>
           </CardHeader>
           <div className="grid gap-3 px-6 pb-6">
-            <Button asChild variant="secondary" className="justify-start">
+            <Button asChild className="justify-start">
               <Link href="/patients/new">
                 <CheckCircle2 className="mr-3 h-4 w-4" />
                 Cadastrar novo paciente
               </Link>
             </Button>
-            <Button asChild variant="secondary" className="justify-start">
-              <Link href="/finance/new">
+            <Button asChild className="justify-start">
+              <Link href="/settings">
                 <Clock4 className="mr-3 h-4 w-4" />
                 Registrar pagamento
               </Link>
             </Button>
-            <Button asChild variant="secondary" className="justify-start">
-              <Link href="/anamnesis/new">
+            <Button asChild className="justify-start">
+              <Link href="/settings">
                 <Files className="mr-3 h-4 w-4" />
                 Criar modelo de anamnese
               </Link>
