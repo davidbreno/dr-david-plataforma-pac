@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import { format } from "date-fns";
+// import { format } from "date-fns"; // Não utilizado
 import { prisma } from "@/lib/prisma";
 import { formatCurrency, formatDateTime } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
@@ -10,8 +9,8 @@ import { uploadAttachmentAction, deleteAttachmentAction } from "@/lib/actions/up
 import { PatientAnamnesis } from "@/components/patient/patient-anamnesis";
 import { getLatestOdontogram } from "@/lib/actions/odontogram-actions";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select } from "@/components/ui/select";
+// import { Textarea } from "@/components/ui/textarea"; // Não utilizado
+// import { Select } from "@/components/ui/select"; // Não utilizado
 
 const statusLabel: Record<string, string> = {
   ACTIVE: "Ativo",
@@ -78,9 +77,15 @@ export default async function PatientDetailPage({
   }
 
   const odontogram = await getLatestOdontogram(patient.id);
-  const templates = await prisma.anamnesisTemplate.findMany({
-    orderBy: { name: "asc" },
-  });
+  // const templates = await prisma.anamnesisTemplate.findMany({
+  //   orderBy: { name: "asc" },
+  // }); // Não utilizado
+
+  // Tipos para os dados do paciente
+  type Appointment = typeof patient.appointments[number];
+  type Finance = typeof patient.finances[number];
+  type AnamnesisSet = typeof patient.anamnesisSets[number];
+  type Attachment = typeof patient.attachments[number];
 
   return (
     <div className="space-y-8">
@@ -99,13 +104,8 @@ export default async function PatientDetailPage({
           </div>
         </div>
         <div className="flex flex-wrap gap-3">
-          <Button asChild variant="secondary">
-            <Link href={`/schedule/new?patientId=${patient.id}`}>Agendar consulta</Link>
-          </Button>
-          <Button asChild>
-            <Link href={`/patients/${patient.id}/anamnesis/new`}>
-              Nova anamnese
-            </Link>
+          <Button onClick={() => window.location.href = `/schedule/new?patientId=${patient.id}`}>
+            Agendar consulta
           </Button>
         </div>
       </div>
@@ -122,7 +122,7 @@ export default async function PatientDetailPage({
             {patient.appointments.length === 0 ? (
               <p className="text-sm text-slate-500">Nenhum atendimento registrado.</p>
             ) : (
-              patient.appointments.map((appointment) => (
+              patient.appointments.map((appointment: Appointment) => (
                 <div
                   key={appointment.id}
                   className="rounded-xl border border-white/12 bg-white px-4 py-3"
@@ -157,7 +157,7 @@ export default async function PatientDetailPage({
             {patient.finances.length === 0 ? (
               <p className="text-sm text-slate-500">Sem lançamentos financeiros.</p>
             ) : (
-              patient.finances.map((tx) => (
+              patient.finances.map((tx: Finance) => (
                 <div
                   key={tx.id}
                   className="rounded-xl border border-white/12 bg-white px-4 py-3"
@@ -191,7 +191,7 @@ export default async function PatientDetailPage({
                 Nenhuma anamnese resposta foi registrada para este paciente.
               </p>
             ) : (
-              patient.anamnesisSets.map((entry) => (
+              patient.anamnesisSets.map((entry: AnamnesisSet) => (
                 <div
                   key={entry.id}
                   className="flex items-start justify-between rounded-xl border border-white/12 bg-white px-4 py-3"
@@ -233,40 +233,7 @@ export default async function PatientDetailPage({
           </div>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Nova anamnese</CardTitle>
-            <CardDescription>Selecione o modelo para iniciar.</CardDescription>
-          </CardHeader>
-          <div className="px-6 pb-6">
-            {templates.length === 0 ? (
-              <p className="text-sm text-slate-500">
-                Cadastre um modelo em Configurações &gt; Anamnese.
-              </p>
-            ) : (
-              <form action={`/patients/${patient.id}/anamnesis/new`} method="get" className="space-y-3">
-                <Select name="templateId" required defaultValue="">
-                  <option value="" disabled>
-                    Escolha um modelo
-                  </option>
-                  {templates.map((template) => (
-                    <option key={template.id} value={template.id}>
-                      {template.name}
-                    </option>
-                  ))}
-                </Select>
-                <Textarea
-                  name="notes"
-                  placeholder="Observações para esta anamnese (opcional)"
-                  rows={3}
-                />
-                <Button type="submit" className="w-full">
-                  Iniciar anamnese
-                </Button>
-              </form>
-            )}
-          </div>
-        </Card>
+        {/* Card de Nova anamnese removido pois rota não existe */}
         <Card>
           <CardHeader>
             <CardTitle>Anamnese completa</CardTitle>
@@ -328,7 +295,7 @@ export default async function PatientDetailPage({
                 Nenhum arquivo anexado ainda.
               </p>
             ) : (
-              patient.attachments.map((attachment) => (
+              patient.attachments.map((attachment: Attachment) => (
                 <div
                   key={attachment.id}
                   className="flex flex-col justify-between rounded-xl border border-white/10 bg-white p-4 shadow-sm"
@@ -343,6 +310,7 @@ export default async function PatientDetailPage({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-3 text-sm font-semibold text-primary hover:underline"
+                      title={`Abrir arquivo: ${attachment.name}`}
                     >
                       Abrir arquivo
                     </a>
@@ -350,7 +318,7 @@ export default async function PatientDetailPage({
                   <form action={deleteAttachment} className="mt-4">
                     <input type="hidden" name="attachmentId" value={attachment.id} />
                     <input type="hidden" name="patientId" value={patient.id} />
-                    <Button type="submit" variant="ghost" size="sm">
+                    <Button type="submit" className="h-8 px-2 text-xs text-red-600 hover:text-red-800">
                       Remover
                     </Button>
                   </form>
