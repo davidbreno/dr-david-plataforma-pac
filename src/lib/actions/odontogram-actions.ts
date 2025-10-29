@@ -3,22 +3,27 @@
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
-import { Prisma } from "@prisma/client";
+import {
+  Prisma,
+  ToothStatus,
+  OdontogramChartType,
+  AnamnesisStatus,
+} from "@prisma/client";
 
 export type OdontogramEntryInput = {
   toothNumber: string;
   region?: string;
   annotations?: string;
-  status: "OPEN" | "IN_PROGRESS" | "COMPLETED" | "NOTE";
+  status: ToothStatus; // "OPEN" | "IN_PROGRESS" | "COMPLETED" | "NOTE"
 };
 
 export type OdontogramPayload = {
   patientId: string;
   responseSetId?: string;
-  chartType?: "PERMANENT" | "DECIDUOUS";
+  chartType?: OdontogramChartType; // "PERMANENT" | "DECIDUOUS"
   entries: OdontogramEntryInput[];
   notes?: string;
-  status?: "OPEN" | "FINALIZED";
+  status?: AnamnesisStatus; // "OPEN" | "FINALIZED"
 };
 
 export async function createOrUpdateOdontogram(payload: OdontogramPayload) {
@@ -36,14 +41,17 @@ export async function createOrUpdateOdontogram(payload: OdontogramPayload) {
   }
 
   const result = await prisma.$transaction(async (tx) => {
-    const chartType = payload.chartType ?? "PERMANENT";
+    const chartType: OdontogramChartType =
+      payload.chartType ?? OdontogramChartType.PERMANENT;
     let responseSet;
 
     if (payload.responseSetId) {
+      // UPDATE existing Response Set
       responseSet = await tx.anamnesisResponseSet.update({
         where: { id: payload.responseSetId },
         data: {
-          status: payload.status ?? "OPEN",
+          // status exists in your schema; keep it strongly typed
+          status: payload.status ?? AnamnesisStatus.OPEN,
           notes: payload.notes,
           odontogram: {
             upsert: {
@@ -62,12 +70,13 @@ export async function createOrUpdateOdontogram(payload: OdontogramPayload) {
         include: { odontogram: true },
       });
     } else {
+      // CREATE new Response Set
       responseSet = await tx.anamnesisResponseSet.create({
         data: {
           patientId: payload.patientId,
           templateId: template.id,
           filledById: user.id,
-          status: payload.status ?? "OPEN",
+          status: payload.status ?? AnamnesisStatus.OPEN,
           notes: payload.notes,
           odontogram: {
             create: {
@@ -81,6 +90,7 @@ export async function createOrUpdateOdontogram(payload: OdontogramPayload) {
       });
     }
 
+    // Ensure odontogram record exists
     if (!responseSet.odontogram) {
       responseSet = await tx.anamnesisResponseSet.update({
         where: { id: responseSet.id },
@@ -97,6 +107,7 @@ export async function createOrUpdateOdontogram(payload: OdontogramPayload) {
       });
     }
 
+    // Replace all entries for this odontogram
     await tx.odontogramEntry.deleteMany({
       where: { odontogramId: responseSet.odontogram!.id },
     });
