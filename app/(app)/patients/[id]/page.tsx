@@ -282,11 +282,14 @@ export default async function PatientDetailPage({
                 odontogram
                   ? {
                       chartType: odontogram.chartType,
-                      entries: odontogram.entries.map((entry) => ({
-                        toothNumber: entry.toothNumber,
-                        status: entry.status,
-                        annotations: entry.annotations ?? undefined,
-                      })),
+                      entries: odontogram.entries.map(
+  (entry: typeof odontogram.entries[number]) => ({
+    toothNumber: entry.toothNumber,
+    status: entry.status,
+    annotations: entry.annotations ?? undefined,
+  })
+),
+
                     }
                   : undefined
               }
